@@ -1,4 +1,3 @@
-/* === PAGE HTML TEMPLATES === */
 
 export const pageHome = `
 <section id="page-home" class="page">

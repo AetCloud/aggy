@@ -1,4 +1,3 @@
-/* --- Root Variables --- */
 :root {
   --primary-font: "Poppins", Arial, sans-serif;
   --accent-orange: #ff9100;
@@ -17,7 +16,6 @@
   --content-x: #f44336;
 }
 
-/* --- General & Background --- */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -41,7 +39,6 @@ body {
   padding: 30px 20px;
 }
 
-/* --- Glass Card --- */
 .glass-card {
   width: 100%;
   max-width: 800px;
@@ -54,7 +51,6 @@ body {
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
-/* --- Header --- */
 .header {
   text-align: center;
   margin-bottom: 24px;
@@ -80,10 +76,11 @@ body {
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-/* --- Socials --- */
 .socials-container {
   width: 100%;
-  overflow: hidden;
+  overflow: visible;
+  padding-top: 5px;
+  margin-top: -5px;
 }
 .socials {
   display: flex;
@@ -105,7 +102,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.2s ease;
   text-decoration: none;
-  flex-shrink: 0; /* Prevents icons from shrinking */
+  flex-shrink: 0;
 }
 .socials a:hover {
   transform: translateY(-4px);
@@ -115,7 +112,6 @@ body {
   border-color: var(--accent-orange);
 }
 
-/* --- Divider --- */
 .divider {
   height: 1px;
   background-image: linear-gradient(
@@ -131,7 +127,6 @@ body {
   width: 90%;
 }
 
-/* --- Main Nav (in card) --- */
 .nav {
   display: flex;
   justify-content: center;
@@ -162,7 +157,6 @@ body {
   background: rgba(255, 145, 0, 0.1);
 }
 
-/* === Quick Nav Popup === */
 .quick-nav {
   position: fixed;
   top: 0;
@@ -174,23 +168,21 @@ body {
   gap: 20px;
   padding: 10px 30px;
 
-  background: rgba(15, 12, 26, 0.85); /* Darker glass */
+  background: rgba(15, 12, 26, 0.85);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-top: none; /* No top border */
-  border-radius: 0 0 16px 16px; /* Rounded bottom corners */
+  border-top: none;
+  border-radius: 0 0 16px 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 
   opacity: 0;
-  /* Start centered and hidden above screen */
   transform: translateX(-50%) translateY(-100%);
   transition: opacity 0.3s ease, transform 0.3s ease;
-  pointer-events: none; /* Can't be clicked when invisible */
+  pointer-events: none;
 }
 .quick-nav.visible {
   opacity: 1;
-  /* Move to centered and visible at top */
   transform: translateX(-50%) translateY(0);
   pointer-events: auto;
 }
@@ -217,7 +209,6 @@ body {
   background: rgba(255, 145, 0, 0.1);
 }
 
-/* --- Page Container & Page Styling --- */
 .page-container {
   margin-top: 24px;
 }
@@ -237,7 +228,6 @@ body {
   }
 }
 
-/* General Page Text Styles */
 .page h2 {
   text-align: center;
   color: var(--text-primary);
@@ -280,7 +270,6 @@ body {
   filter: invert(1);
 }
 
-/* --- ToS Page Lists --- */
 .tos-list {
   list-style: none;
   padding-left: 0;
@@ -300,7 +289,6 @@ body {
   font-size: 1.2rem;
 }
 
-/* Can/Cannot Do Blocks */
 .content-block-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -348,11 +336,11 @@ body {
   font-size: 1.1rem;
 }
 .can-do li::before {
-  content: "\f00c"; /* check */
+  content: "\f00c";
   color: var(--content-check);
 }
 .cannot-do li::before {
-  content: "\f00d"; /* x */
+  content: "\f00d";
   color: var(--content-x);
 }
 .cannot-do .subtext {
@@ -360,7 +348,6 @@ body {
   color: rgba(255, 255, 255, 0.5);
 }
 
-/* --- Commissions Page Buttons --- */
 .button-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -402,7 +389,6 @@ body {
   color: var(--text-secondary);
 }
 
-/* --- Footer --- */
 .footer {
   text-align: center;
   margin-top: 20px;
@@ -429,7 +415,6 @@ body {
   text-shadow: var(--accent-orange-glow);
 }
 
-/* --- Fade-in animation (from your JS) --- */
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
@@ -440,10 +425,9 @@ body {
   transform: translateY(0);
 }
 
-/* --- Responsive --- */
 @media (max-width: 600px) {
   body {
-    padding: 15px; /* Removed bottom padding */
+    padding: 15px;
   }
   .glass-card {
     padding: 20px;
@@ -456,37 +440,35 @@ body {
     font-size: 1.7rem;
   }
 
-  /* Horizontal Scroll for Socials */
   .socials-container {
     overflow-x: auto;
-    /* Hide scrollbar */
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    padding-top: 5px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
   .socials-container::-webkit-scrollbar {
-    display: none; /* Chrome, Safari */
+    display: none;
   }
   .socials {
     flex-wrap: nowrap;
     justify-content: flex-start;
-    padding: 0 10px 10px;
+    padding: 5px 10px 10px;
+    margin-bottom: 10px;
   }
 
-  /* === Quick Nav Popup (Mobile) === */
   .quick-nav {
-    gap: 5px; /* Tighter gap */
+    gap: 5px;
     padding: 10px;
-    width: 95%; /* Use percentage width */
+    width: 95%;
   }
   .quick-nav-link {
-    flex: 1; /* Distribute space */
-    padding: 8px 5px; /* Less horizontal padding */
-    font-size: 0.8rem; /* Smaller font */
-    gap: 5px; /* Smaller gap */
+    flex: 1;
+    padding: 8px 5px;
+    font-size: 0.8rem;
+    gap: 5px;
     justify-content: center;
   }
 
-  /* === Main Nav (Mobile) === */
   .nav {
     gap: 8px;
     flex-direction: column;
@@ -497,7 +479,6 @@ body {
     font-size: 1rem;
   }
 
-  /* Page Content */
   .content-block-grid {
     grid-template-columns: 1fr;
   }
