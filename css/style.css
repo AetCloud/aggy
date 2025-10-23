@@ -443,7 +443,7 @@ body {
 /* --- Responsive --- */
 @media (max-width: 600px) {
   body {
-    padding: 15px 15px 100px 15px; /* Add bottom padding for new nav */
+    padding: 15px; /* Removed bottom padding */
   }
   .glass-card {
     padding: 20px;
@@ -472,54 +472,29 @@ body {
     padding: 0 10px 10px;
   }
 
-  /* === HIDE Quick Nav on mobile === */
+  /* === Quick Nav Popup (Mobile) === */
   .quick-nav {
-    display: none;
+    gap: 5px; /* Tighter gap */
+    padding: 10px;
+    width: 95%; /* Use percentage width */
+  }
+  .quick-nav-link {
+    flex: 1; /* Distribute space */
+    padding: 8px 5px; /* Less horizontal padding */
+    font-size: 0.8rem; /* Smaller font */
+    gap: 5px; /* Smaller gap */
+    justify-content: center;
   }
 
-  /* Mobile Bottom Tab Bar */
+  /* === Main Nav (Mobile) === */
   .nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    background: rgba(15, 12, 26, 0.85); /* Darker glass */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    margin: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 0;
-    z-index: 1000;
-    gap: 0;
+    gap: 8px;
+    flex-direction: column;
+    align-items: stretch;
   }
   .nav a.nav-link {
-    flex: 1;
-    flex-direction: column;
     justify-content: center;
-    text-align: center;
-    font-size: 0.75rem;
-    padding: 10px 5px;
-    border-radius: 0;
-    border: none;
-    background: none;
-    gap: 4px;
-  }
-  .nav a.nav-link span {
-    font-size: 0.75rem; /* Ensure text is small */
-  }
-  .nav a.nav-link.active {
-    color: var(--accent-orange);
-    border: none;
-    background: none;
-    border-top: 3px solid var(--accent-orange);
-    padding-top: 7px; /* Adjust for border */
-  }
-  #nav-divider {
-    display: none; /* Hide the divider above the nav on mobile */
+    font-size: 1rem;
   }
 
   /* Page Content */
