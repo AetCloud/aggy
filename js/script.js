@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     document.querySelectorAll(".fade-in").forEach((el) => observer.observe(el));
   }
@@ -45,25 +45,53 @@ document.addEventListener("DOMContentLoaded", () => {
   function loadPage(pageName) {
     window.scrollTo({ top: 0, behavior: "smooth" });
 
-    switch (pageName) {
-      case "home":
-        pageContainer.innerHTML = pageHome;
-        break;
-      case "tos":
-        pageContainer.innerHTML = pageToS;
-        break;
-      case "commissions":
-        pageContainer.innerHTML = pageCommissions;
-        break;
-      default:
-        pageContainer.innerHTML = pageHome;
+    const oldWrapper = pageContainer.querySelector(".page-content-wrapper");
+
+    if (oldWrapper) {
+      oldWrapper.classList.remove("visible");
     }
-    setTimeout(initFadeInObserver, 50);
+
+    setTimeout(() => {
+      let content = "";
+      switch (pageName) {
+        case "home":
+          content = pageHome;
+          break;
+        case "tos":
+          content = pageToS;
+          break;
+        case "commissions":
+          content = pageCommissions;
+          break;
+        default:
+          content = pageHome;
+      }
+
+      pageContainer.classList.remove("expanded");
+
+      pageContainer.innerHTML = `<div class="page-content-wrapper">${content}</div>`;
+
+      const newWrapper = pageContainer.querySelector(".page-content-wrapper");
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          pageContainer.classList.add("expanded");
+
+          setTimeout(() => {
+            newWrapper.classList.add("visible");
+            initFadeInObserver();
+          }, 50);
+        });
+      });
+    }, 250);
   }
 
   function handleNavClick(e) {
     e.preventDefault();
     const targetPageName = e.currentTarget.getAttribute("href").substring(1);
+    const currentTab = localStorage.getItem("aggyActiveTab") || "home";
+
+    if (targetPageName === currentTab) return;
 
     loadPage(targetPageName);
 
@@ -81,15 +109,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const savedTab = localStorage.getItem("aggyActiveTab") || "home";
-
   loadPage(savedTab);
 
   const activeHref = `[href="#${savedTab}"]`;
   document
     .querySelectorAll(`.nav-link${activeHref}, .quick-nav-link${activeHref}`)
     .forEach((link) => link.classList.add("active"));
-
-  initFadeInObserver();
 
   const quickNav = document.getElementById("quick-nav-popup");
   if (quickNav) {
